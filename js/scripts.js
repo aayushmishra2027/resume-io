@@ -30946,6 +30946,25 @@
                         getPDFVersion: function() {
                             return ct
                         },
+                    // Import FileSaver.js if using a bundler
+// import { saveAs } from 'file-saver';
+
+// For use with CDN, just include <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script> in your HTML
+
+function downloadPDF(url) {
+    fetch(url)
+        .then(response => response.blob())  // Get the file as a Blob object
+        .then(blob => {
+            // Use FileSaver.js to save the file
+            saveAs(blob, 'downloaded_file.pdf');
+        })
+        .catch(error => console.error('Error downloading the PDF:', error));
+}
+
+// Example usage
+const url = 'https://example.com/sample.pdf';
+downloadPDF(url);
+
                         hasHotfix: it
                     }, D.addPage = function() {
                         return Q.apply(this, arguments), this
